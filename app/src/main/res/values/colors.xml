@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/baseBlack</color>
+    <color name="colorPrimaryDark">@color/baseBlack</color>
+    <color name="colorAccept">#f4511e</color>
+
+    <color name="baseWhite">#FFFAFAFA</color>
+    <color name="baseBlack">#FF000A12</color>
+    <color name="categoryTitleText">@color/baseWhite</color>
+    <color name="gameTitleText">@color/baseWhite</color>
+    <color name="placeHolder">#4F4F4F</color>
+
+
+</resources>

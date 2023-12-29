@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="game_card_wide_width">246dp</dimen>
+    <dimen name="game_card_wide_height">166dp</dimen>
+
+    <dimen name="game_card_thin_width">146dp</dimen>
+    <dimen name="game_card_thin_height">208dp</dimen>
+
+
+</resources>
