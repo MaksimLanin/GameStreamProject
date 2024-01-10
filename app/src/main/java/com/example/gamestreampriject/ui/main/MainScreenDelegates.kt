@@ -1,6 +1,8 @@
 package com.example.gamestreampriject.ui.main
 
 import android.annotation.SuppressLint
+import com.bumptech.glide.Glide
+import com.example.gamestreampriject.R
 import com.example.gamestreampriject.databinding.ItemGameThinBinding
 import com.example.gamestreampriject.databinding.ItemGameWideBinding
 import com.example.gamestreampriject.databinding.ItemGamesHorisontalBinding
@@ -12,7 +14,6 @@ import com.example.gamestreampriject.model.game.GameWideItem
 import com.example.gamestreampriject.model.game.GamesHorisontalItem
 import com.example.gamestreampriject.model.game.ProgressThinItem
 import com.example.gamestreampriject.model.game.ProgressWideItem
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
 import com.hannesdorfmann.adapterdelegates4.dsl.adapterDelegateViewBinding
 
 object MainScreenDelegates {
@@ -34,11 +35,6 @@ object MainScreenDelegates {
                 adapter.items = item.games
 
             }
-
-            //onViewRecycler
-            onViewRecycled {
-                //...
-            }
         }
 
     val wideProgressDelegate =
@@ -59,12 +55,19 @@ object MainScreenDelegates {
             )
         }) {
             bind {
-                binding.imageView.setBackgroundColor(item.title.hashCode())
+                val resources = binding.root.resources
+                Glide.with(binding.root)
+                    .load(item.image)
+                    .override(
+                        resources.getDimensionPixelOffset(R.dimen.game_card_thin_width),
+                        resources.getDimensionPixelOffset(R.dimen.game_card_thin_height)
+                    )
+                    .centerCrop()
+                    .into(binding.imageView)
                 binding.title = item.title
                 binding.executePendingBindings()
             }
         }
-
 
     val thinProgressDelegate =
         adapterDelegateViewBinding<ProgressThinItem, ListItem, ItemProgressThinBinding>({ inflater, container ->
@@ -84,7 +87,15 @@ object MainScreenDelegates {
             )
         }) {
             bind {
-                binding.imageView.setBackgroundColor(item.title.hashCode())
+                val resources = binding.root.resources
+                Glide.with(binding.root)
+                    .load(item.image)
+                    .override(
+                        resources.getDimensionPixelOffset(R.dimen.game_card_thin_width),
+                        resources.getDimensionPixelOffset(R.dimen.game_card_thin_height)
+                    )
+                    .centerCrop()
+                    .into(binding.imageView)
                 binding.title = item.title
                 binding.executePendingBindings()
             }

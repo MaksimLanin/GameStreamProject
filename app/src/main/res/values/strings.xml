@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">GameStreamPriject</string>
-    <string name="top_upcoming">Top upcoming</string>
+    <string name="most_anticipated">The most anticipated</string>
+    <string name="latest_releases">Latest releases</string>
+    <string name="most_rated_in_2020">Most rated in 2020</string>
 </resources>

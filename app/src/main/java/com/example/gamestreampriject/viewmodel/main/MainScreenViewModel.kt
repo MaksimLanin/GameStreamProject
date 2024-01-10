@@ -32,11 +32,11 @@ class MainScreenViewModel : BaseViewModel() {
     private fun getLoaders(): List<ListItem> {
         return listOf(
             GamesHorisontalItem(
-                title = "Wide games title",
+                title = "The most anticipated",
                 games = IntRange(1, 2).map { ProgressWideItem }
             ),
             GamesHorisontalItem(
-                title = "Thin games title",
+                title = "Latest realeases ",
                 games = IntRange(1, 3).map { ProgressThinItem }
 
             ),
@@ -49,33 +49,58 @@ class MainScreenViewModel : BaseViewModel() {
     }
 
     private suspend fun getItems(): List<ListItem> {
-        val response = api.games()
-        val gamesWide = response.results.map {
+        val mostAnticipatedResponse = api.games(
+            mapOf(
+                "dates" to "2024-01-10,2025-01-10",
+                "ordering" to "-added"
+            )
+        )
+        val latesReleasesResponse = api.games(
+            mapOf(
+                "dates" to "2023-12-01,024-01-10"
+            )
+        )
+        val mostRatedResponse = api.games(
+            mapOf(
+                "dates" to "2024-01-10,2025-01-10",
+                "ordering" to "rated"
+            )
+        )
+        val mostAnticipatedItem = mostAnticipatedResponse.results.map {
             GameWideItem(
                 id = it.id,
-                title = it.title
+                title = it.title,
+                image = it.image
             )
         }
 
-        val gamesThin = response.results.map {
+        val latestReleasesItems = latesReleasesResponse.results.map {
             GameThinItem(
                 id = it.id,
-                title = it.title
+                title = it.title,
+                image = it.image
+            )
+        }
+        val mostRatedItem = mostAnticipatedResponse.results.map {
+            GameWideItem(
+                id = it.id,
+                title = it.title,
+                image = it.image
             )
         }
         return listOf(
             GamesHorisontalItem(
-                title = "Wide games title",
-                games = gamesWide
+                title = "The most anticipated",
+                games = mostAnticipatedItem
             ),
             GamesHorisontalItem(
-                title = "Thin games title",
-                games = gamesThin
+                title = "Latest realeases",
+                games = latestReleasesItems
 
             ),
             GamesHorisontalItem(
                 title = "Tree games title",
-                games = gamesWide
+                games = mostRatedItem
 
             )
         )
